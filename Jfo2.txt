@@ -1,0 +1,33 @@
+Caixa de papelão:
+    propriedades:
+        dimensões;
+        material;
+        capacidade;
+    comportamentos:
+        Empilhar;
+        Calcular volume;
+        personalizar caixa;
+
+Departamento:
+    propriedades:
+        lista de pedidos;
+        status do pedido;
+        funcionários;
+    comportamentos:
+        despachar pedido;
+        atualizar status;
+        registrar pedido;
+
+Cobra:
+   - propriedades:
+     - Comprimento
+     - Espécie (ex.: Python, Coral, Cascavel)
+     - Padrão de cores
+   - comportamentos:
+     - Rastejar
+     - Engolir alimentos
+     - Trocar a pele
+
+
+
+
