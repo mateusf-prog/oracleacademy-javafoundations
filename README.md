@@ -1,1 +1,1 @@
-# Solved exercises from the Oracle Academy - Java Foundations course 
+# Solved exercises from the Oracle Academy - Java Foundations
