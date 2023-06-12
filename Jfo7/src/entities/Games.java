@@ -4,22 +4,39 @@ import java.util.Random;
 
 public class Games {
 
-    private static final int REQUIRED_CREDIT=20;
+    private String name;
+    private int requiredCredit;
 
-    public String swipeCard(Cards card) {
-        Random random = new Random();
-        if (card.getCurrentCreditBalance() > REQUIRED_CREDIT) {
-            int ticketsWon = random.nextInt(41);
-            card.setCurrentCreditBalance(card.getCurrentCreditBalance() - REQUIRED_CREDIT);     // reduce current balance
-            card.setCurrentTicketBalance(card.getCurrentTicketBalance() + ticketsWon);      // adding tiquets to card
-            return "Card number: "
-                + card.getCardNumber()
-                + "\nWon tickets: "
-                + ticketsWon
-                + "\nNew tickets balance: "
-                + card.getCurrentTicketBalance();
+    public Games(String name, int requiredCredit) {
+        this.name = name;
+        this.requiredCredit = requiredCredit;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRequiredCredit() {
+        return requiredCredit;
+    }
+
+    public String playGame(Cards card) {
+        if (checkCreditBalance(card)) {
+            Random random = new Random();
+            int ticketWon = random.nextInt(41);
+            card.setCurrentCreditBalance(card.getCurrentCreditBalance() - requiredCredit);     // reduce current balance
+            card.setCurrentTicketBalance(card.getCurrentTicketBalance() + ticketWon);
+            return "Playing the game!";
         } else {
-            return "Insuficient Balance!";
+            return "Isuficient balance!";
+        }
+    }
+
+    public boolean checkCreditBalance(Cards card) {
+        if (card.getCurrentCreditBalance() > requiredCredit) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
