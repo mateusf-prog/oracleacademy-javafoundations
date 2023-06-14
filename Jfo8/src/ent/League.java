@@ -1,16 +1,18 @@
+package ent;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class League{
 
-    private Teams team1;
-    private Teams team2;
-    private Teams team3;
-    private Teams team4;
+    private Team team1;
+    private Team team2;
+    private Team team3;
+    private Team team4;
 
     List<Match> matchHistory = new ArrayList<Match>();
 
-    public League(Teams team1, Teams team2, Teams team3, Teams team4) {
+    public League(Team team1, Team team2, Team team3, Team team4) {
         this.team1 = team1;
         this.team2 = team2;
         this.team3 = team3;

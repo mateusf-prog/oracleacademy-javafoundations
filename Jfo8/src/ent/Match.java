@@ -1,13 +1,15 @@
+package ent;
+
 import java.util.Random;
 
 public class Match {
     
     private int id=0;
     private int temperature;
-    private Teams team1;
-    private Teams team2;
+    private Team team1;
+    private Team team2;
 
-    public Match(Teams team1, Teams team2, int temperature) {
+    public Match(Team team1, Team team2, int temperature) {
         this.id ++;
         this.team1 = team1;
         this.team2 = team2;
@@ -17,7 +19,7 @@ public class Match {
     public String startMatch() {
         int team1Goals=0, team2Goals=0;
         Random random = new Random();
-        if (temperature > 0 &&  temperature < 20) {
+        if (temperature > 10 &&  temperature < 25) {
             team1Goals = random.nextInt(0, 2);
             team2Goals = random.nextInt(0, 2);
             if (team1Goals > team2Goals) {
@@ -35,15 +37,15 @@ public class Match {
                 team2.setGoalsConceded(team1Goals);
                 return team1.getName() + " " + team1Goals + " x " + team2Goals + " " + team2.getName();
             } else {
-                team1.setCountTies();
-                team2.setCountTies();
+                team1.setCountTie();
+                team2.setCountTie();
                 team1.setScoredGoals(team1Goals);
                 team1.setGoalsConceded(team2Goals);
                 team2.setScoredGoals(team2Goals);
                 team2.setGoalsConceded(team1Goals);
                 return team1.getName() + " " + team1Goals + " x " + team2Goals + " " + team2.getName();
             }
-        } else if (temperature > 20 &&  temperature < 50) {
+        } else if (temperature > 25 &&  temperature < 50) {
             team1Goals = random.nextInt(0, 5);
             team2Goals = random.nextInt(0, 5);
             if (team1Goals > team2Goals) {
@@ -61,8 +63,8 @@ public class Match {
                 team2.setGoalsConceded(team1Goals);
                 return team1.getName() + " " + team1Goals + " x " + team2Goals + " " + team2.getName();
             } else {
-                team1.setCountTies();
-                team2.setCountTies();
+                team1.setCountTie();
+                team2.setCountTie();
                 team1.setScoredGoals(team1Goals);
                 team1.setGoalsConceded(team2Goals);
                 team2.setScoredGoals(team2Goals);
@@ -87,8 +89,8 @@ public class Match {
                 team2.setGoalsConceded(team1Goals);
                 return team1.getName() + " " + team1Goals + " x " + team2Goals + " "  + team2.getName();
             } else {
-                team1.setCountTies();
-                team2.setCountTies();
+                team1.setCountTie();
+                team2.setCountTie();
                 team1.setScoredGoals(team1Goals);
                 team1.setGoalsConceded(team2Goals);
                 team2.setScoredGoals(team2Goals);
