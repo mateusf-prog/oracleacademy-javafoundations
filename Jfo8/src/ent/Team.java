@@ -1,5 +1,7 @@
 package ent;
 
+import java.util.Random;
+
 public class Team {
     
     private String name;
@@ -9,17 +11,8 @@ public class Team {
     private int scoredGoals=0;
     private int goalsConceded=0;
 
-    private String[][] teamDetails;
-
     public Team(String teamName) {
         this.name = teamName;
-        this.teamDetails = new String[2][5];
-        teamDetails[0][0] = "--";
-        teamDetails[0][1] = "victories";
-        teamDetails[0][2] = "losses";
-        teamDetails[0][3] = "tie";
-        teamDetails[0][4] = "scoredGoals";
-        teamDetails[0][5] = "goalsConceded";
     }
 
     public String getName() {
@@ -36,8 +29,7 @@ public class Team {
 
     public void setCountVictories() {
         this.countVictories++;
-        this.teamDetails[1][1] = String.valueOf(countVictories);
-        }
+    }
 
     public int getCountLosses() {
         return this.countLosses;
@@ -45,7 +37,6 @@ public class Team {
 
     public void setCountLosses() {
         this.countLosses++;
-        this.teamDetails[1][2] = String.valueOf(countLosses);
     }
 
     public int getCountTie() {
@@ -54,7 +45,6 @@ public class Team {
 
     public void setCountTie() {
         this.countTie ++;
-        this.teamDetails[1][3] = String.valueOf(countTie);
     }
 
     public int getScoredGoals() {
@@ -63,7 +53,6 @@ public class Team {
 
     public void setScoredGoals(int value) {
         this.scoredGoals += value;
-        this.teamDetails[1][4] = String.valueOf(scoredGoals);
     }
 
     public int getGoalsConceded() {
@@ -72,6 +61,21 @@ public class Team {
 
     public void setGoalsConceded(int value) {
         this.goalsConceded += value;
-        this.teamDetails[1][5] = String.valueOf(goalsConceded);
+    }
+
+    public String toString() {
+        Random random = new Random();
+        return getName()
+            + "\nWins: " 
+            + getCountVictories()
+            + ", Losses: "
+            + getCountLosses()
+            + ", Tie: "
+            + getCountTie()
+            + "\nPoints Scored: "
+            + random.nextInt(3, 9)
+            + ", Points allowed: "
+            + random.nextInt(2, 8)
+            + "\n\n";
     }
 }

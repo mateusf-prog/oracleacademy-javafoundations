@@ -16,6 +16,10 @@ public class Match {
         this.temperature = temperature;
     }
 
+    public int getTemperature() {
+        return temperature;
+    }
+
     public String startMatch() {
         int team1Goals=0, team2Goals=0;
         Random random = new Random();
@@ -101,7 +105,7 @@ public class Match {
     }
 
     public String toString(){
-        return " ID of match: " 
+        return "\n\nID of match: " 
             + id
             + "\nTemperature: "
             + temperature

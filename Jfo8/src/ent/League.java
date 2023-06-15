@@ -10,7 +10,7 @@ public class League{
     private Team team3;
     private Team team4;
 
-    List<Match> matchHistory = new ArrayList<Match>();
+    List<Match> matchesHistory = new ArrayList<Match>();
 
     public League(Team team1, Team team2, Team team3, Team team4) {
         this.team1 = team1;
@@ -35,6 +35,39 @@ public class League{
         return this.team4.getName();
     }
 
-    
+    public String teamResults(Team team1, Team team2, Team team3, Team team4) {
+        return team1.toString()
+            + team2.toString()
+            + team3.toString()
+            + team4.toString();
+    }       
 
+    public void addMatchToList(Match match) {
+        matchesHistory.add(match);
+    }
+
+    public String matchHistory() {
+        StringBuilder sb = new StringBuilder();
+        for (Match match : matchesHistory) {
+            sb.append(match);
+        }
+        return sb.toString();
+    }
+
+    public String averageAndMaxTemperature() {
+        int averageTemp = 0;
+        int maxTemp = Integer.MIN_VALUE;
+        for (Match match : matchesHistory) {
+            averageTemp += match.getTemperature();
+            for (int i=0; i<matchesHistory.size(); i++) {
+                if (match.getTemperature() > maxTemp) {
+                    maxTemp = match.getTemperature();
+                }
+            }
+        }
+        return "Average Temp: "
+        + averageTemp / matchesHistory.size()
+        + "\nHottest Temp: "
+        + maxTemp;
+    }
 }
