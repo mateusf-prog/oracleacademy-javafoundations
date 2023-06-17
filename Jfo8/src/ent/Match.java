@@ -1,5 +1,6 @@
 package ent;
 
+import java.util.List;
 import java.util.Random;
 
 public class Match {
@@ -104,6 +105,7 @@ public class Match {
             }       
         }
     }
+
 
     public String toString(){
         return "\n\nID of match: " 

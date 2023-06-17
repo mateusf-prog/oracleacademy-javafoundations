@@ -1,7 +1,5 @@
 package ent;
 
-import java.util.Random;
-
 public class Team {
     
     private String name;

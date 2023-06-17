@@ -54,21 +54,29 @@ public class Main {
             }
             // creating structure so that a team never plays against itself 
             if (temp >= 10) {
-                Team randomTeam1 = teams.get(rd.nextInt(3));
-                Team randomTeam2 = teams.get(rd.nextInt(3));
-                while( randomTeam1 == randomTeam2) {
-                    randomTeam1 = teams.get(rd.nextInt(3));
+                Team randomTeam1 = teams.get(rd.nextInt(teams.size()));
+                Team randomTeam2 = teams.get(rd.nextInt(teams.size()));
+                Team randomTeam3 = teams.get(rd.nextInt(teams.size()));
+                Team randomTeam4 = teams.get(rd.nextInt(teams.size()));
+                while( randomTeam1 == randomTeam2 || randomTeam3 == randomTeam4) {
+                    randomTeam1 = teams.get(rd.nextInt(teams.size()));
+                    randomTeam3 = teams.get(rd.nextInt(teams.size()));
                 }
                 // instantiating class Match with two random teams
                 Match match = new Match(randomTeam1, randomTeam2, temp);
+                Match match2 = new Match(randomTeam3, randomTeam4, temp);
                 match.startMatch();
-                System.out.println(match.toString());
+                match2.startMatch();
+                System.out.println(match.toString() + "\n");
+                System.out.println(match2.toString() + "\n");
                 league.addMatchToList(match);
+                league.addMatchToList(match2);
                 System.out.println();
             }
         }
         System.out.println();
         System.out.println();
+        //
         try {
             System.out.println("--------MATCHES RESULTS------");
             System.out.println(league.matchHistory());
@@ -84,6 +92,8 @@ public class Main {
         }
         System.out.println();
         System.out.println();
+
+        sc.close();
     }
 }
 
