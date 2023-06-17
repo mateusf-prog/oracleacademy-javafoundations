@@ -1,5 +1,8 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import ent.League;
@@ -10,60 +13,77 @@ public class Main {
     public static void main(String args[]) {
 
         Scanner sc = new Scanner(System.in);
+        Random rd = new Random();
 
-        Team team1 = new Team("Santos");
-        Team team2 = new Team("São Paulo");
-        Team team3 = new Team("Corinthians");
-        Team team4 = new Team("Flamengo");
+        // instantiating four teams
+        Team team1 = new Team("team A");
+        Team team2 = new Team("team B");
+        Team team3 = new Team("team C");
+        Team team4 = new Team("team D");
+        List<Team> teams = new ArrayList<Team>();
+        teams.add(team1);
+        teams.add(team2);
+        teams.add(team3);
+        teams.add(team4);
 
+        // instantiating league and add teams in the league
         League league = new League(team1, team2, team3, team4);
-        
-        System.out.print("Type the temperature: ");
-        int temperature = sc.nextInt();
-        int count = 1;
 
-        if (temperature < 10) {
-            while (temperature < 10) {
-                System.out.println("Too cold to play.");
-                System.out.print("Type the temperature: ");
-                temperature = sc.nextInt();
+        int count = 0;
+        int countWeeks = 0;
+        
+        for (int week=1; week<5; week ++) {
+            System.out.println("---- Week " + week + " ----");
+            System.out.print("Type the temperature this week: ");
+            int temp = sc.nextInt();
+            while (temp < 10) {
                 count ++;
-                if (count == 3) {
-                    System.out.println("Season is over");
-                    System.out.println("----------results----------");
-                    league.teamResults(team1, team2, team3, team4);
-                    System.out.println();
-                    System.out.println();
+                countWeeks ++;
+                System.out.println("Too cold to play.");
+                break;   
+            }
+            if (countWeeks == 3) {
+                System.out.println("Season is over!");
+                try {
                     System.out.println(league.matchHistory());
-                    System.out.println();
                     System.out.println(league.averageAndMaxTemperature());
+                } catch (Exception e) {
+                    System.out.println("Nothing result to see!");
                 }
+                break;
+            }
+            // creating structure so that a team never plays against itself 
+            if (temp >= 10) {
+                Team randomTeam1 = teams.get(rd.nextInt(3));
+                Team randomTeam2 = teams.get(rd.nextInt(3));
+                while( randomTeam1 == randomTeam2) {
+                    randomTeam1 = teams.get(rd.nextInt(3));
+                }
+                // instantiating class Match with two random teams
+                Match match = new Match(randomTeam1, randomTeam2, temp);
+                match.startMatch();
+                System.out.println(match.toString());
+                league.addMatchToList(match);
+                System.out.println();
             }
         }
-
-        Match match1 = new Match(team1, team2, temperature);
-        match1.startMatch();
-        league.addMatchToList(match1);
-        Match match2 = new Match(team2, team3, temperature);
-        match2.startMatch();
-        league.addMatchToList(match2);
-        Match match3 = new Match(team4, team1, temperature);
-        match3.startMatch();
-        league.addMatchToList(match3);
-        Match match4 = new Match(team2, team4, temperature);
-        match4.startMatch();
-        league.addMatchToList(match4);
-
         System.out.println();
         System.out.println();
-        league.teamResults(team1, team2, team3, team4);
+        try {
+            System.out.println("--------MATCHES RESULTS------");
+            System.out.println(league.matchHistory());
+            System.out.println("\n\n" + league.averageAndMaxTemperature());
+        } catch (Exception e) {
+            System.out.println("Nothing result to see!");
+        }
         System.out.println();
         System.out.println();
-        System.out.println(league.matchHistory());
+        System.out.println("--------TEAMS RESULTS------\n");
+        for (Team team : teams) {
+            System.out.println(team.toString());
+        }
         System.out.println();
-        System.out.println(league.averageAndMaxTemperature());
-
-
-        sc.close();
+        System.out.println();
     }
-} 
+}
+

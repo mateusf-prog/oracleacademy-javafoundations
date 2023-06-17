@@ -10,7 +10,8 @@ public class Match {
     private Team team2;
 
     public Match(Team team1, Team team2, int temperature) {
-        this.id ++;
+        Random random = new Random();
+        this.id = random.nextInt(9999);
         this.team1 = team1;
         this.team2 = team2;
         this.temperature = temperature;
@@ -112,8 +113,4 @@ public class Match {
             + "\nResult: "
             + startMatch();
     }
-
-
-
-
 }
