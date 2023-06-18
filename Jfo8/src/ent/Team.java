@@ -13,16 +13,10 @@ public class Team {
 
     public Team(String teamName) {
         this.name = teamName;
-        this.teamResults[0][0] = "Victories      = ";
-        this.teamResults[1][0] = "Losses         = ";
-        this.teamResults[2][0] = "Tie            = ";
-        this.teamResults[3][0] = "Scored Goals   = ";
-        this.teamResults[4][0] = "Conceded Goals = ";
-
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -30,21 +24,19 @@ public class Team {
     }
 
     public int getCountVictories() {
-        return this.countVictories;
+        return countVictories;
     }
 
     public void setCountVictories() {
-        this.countVictories++;
-        this.teamResults[0][1] = String.valueOf(getCountVictories());
+        countVictories++;
     }
 
     public int getCountLosses() {
-        return this.countLosses;
+        return countLosses;
     }
 
     public void setCountLosses() {
-        this.countLosses++;
-        this.teamResults[1][1] = String.valueOf(getCountLosses());
+        countLosses++;
     }
 
     public int getCountTie() {
@@ -52,8 +44,7 @@ public class Team {
     }
 
     public void setCountTie() {
-        this.countTie ++;
-        this.teamResults[2][1] = String.valueOf(getCountTie());
+        countTie ++;
     }
 
     public int getScoredGoals() {
@@ -61,8 +52,7 @@ public class Team {
     }
 
     public void setScoredGoals(int value) {
-        this.scoredGoals += value;
-        this.teamResults[3][1] = String.valueOf(getScoredGoals());
+        scoredGoals += value;
     }
 
     public int getGoalsConceded() {
@@ -70,8 +60,20 @@ public class Team {
     }
 
     public void setGoalsConceded(int value) {
-        this.goalsConceded += value;
-        this.teamResults[4][1] = String.valueOf(getGoalsConceded());
+        goalsConceded += value;
+    }
+
+    public void saveResultTeams() {
+        teamResults[0][0] = "Victories      = ";
+        teamResults[1][0] = "Losses         = ";
+        teamResults[2][0] = "Tie            = ";
+        teamResults[3][0] = "Scored Goals   = ";
+        teamResults[4][0] = "Conceded Goals = ";
+        teamResults[0][1] = String.valueOf(getCountVictories());
+        teamResults[1][1] = String.valueOf(getCountLosses());
+        teamResults[2][1] = String.valueOf(getCountTie());
+        teamResults[3][1] = String.valueOf(getScoredGoals());
+        teamResults[4][1] = String.valueOf(getGoalsConceded());
     }
 
     public String toString() {

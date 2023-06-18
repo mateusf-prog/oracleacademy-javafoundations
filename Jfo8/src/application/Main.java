@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -58,7 +59,7 @@ public class Main {
                 Team randomTeam2 = teams.get(rd.nextInt(teams.size()));
                 Team randomTeam3 = teams.get(rd.nextInt(teams.size()));
                 Team randomTeam4 = teams.get(rd.nextInt(teams.size()));
-                while( randomTeam1 == randomTeam2 || randomTeam3 == randomTeam4) {
+                while (randomTeam1 == randomTeam2 || randomTeam3 == randomTeam4) {
                     randomTeam1 = teams.get(rd.nextInt(teams.size()));
                     randomTeam3 = teams.get(rd.nextInt(teams.size()));
                 }
@@ -67,6 +68,10 @@ public class Main {
                 Match match2 = new Match(randomTeam3, randomTeam4, temp);
                 match.startMatch();
                 match2.startMatch();
+                randomTeam1.saveResultTeams();
+                randomTeam2.saveResultTeams();
+                randomTeam3.saveResultTeams();
+                randomTeam4.saveResultTeams();
                 System.out.println(match.toString() + "\n");
                 System.out.println(match2.toString() + "\n");
                 league.addMatchToList(match);
@@ -74,23 +79,19 @@ public class Main {
                 System.out.println();
             }
         }
-        System.out.println();
-        System.out.println();
         
         try {
-            System.out.println("--------MATCHES RESULTS------");
+            System.out.println("\n\n--------MATCHES RESULTS------");
             System.out.println(league.matchHistory());
             System.out.println("\n\n" + league.averageAndMaxTemperature());
         } catch (Exception e) {
             System.out.println("Nothing result to see!");
         }
-        System.out.println();
-        System.out.println();
-        System.out.println("--------TEAMS RESULTS------\n");
+
+        System.out.println("\n\n--------TEAMS RESULTS------\n");
         for (Team team : teams) {
             System.out.println(team.toString());
         }
-        System.out.println();
         System.out.println();
 
         sc.close();

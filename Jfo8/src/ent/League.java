@@ -35,13 +35,6 @@ public class League{
         return this.team4.getName();
     }
 
-    public String teamResults(Team team1, Team team2, Team team3, Team team4) {
-        return team1.toString()
-            + team2.toString()
-            + team3.toString()
-            + team4.toString();
-    }       
-
     public void addMatchToList(Match match) {
         matchesHistory.add(match);
     }
